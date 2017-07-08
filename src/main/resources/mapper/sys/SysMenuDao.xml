@@ -90,7 +90,7 @@
                 `icon` = #{icon},
             </if>
             <if test="orderNum != null">
-                `order_num` = #{num}
+                `order_num` = #{orderNum}
             </if>
         </set>
     </update>

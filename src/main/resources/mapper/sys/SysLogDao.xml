@@ -60,7 +60,7 @@
                 `params` = #{params},
             </if>
             <if test="ip != null">
-                `ip` = #{ip},
+                `ip` = #{ip}
             </if>
         </set>
     </update>
