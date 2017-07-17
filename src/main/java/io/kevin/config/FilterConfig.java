@@ -2,6 +2,7 @@ package io.kevin.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.web.filter.DelegatingFilterProxy;
  * @author ZGJ
  * @date 2017/7/1 11:24
  **/
+@Configuration
 public class FilterConfig {
     @Bean
     public FilterRegistrationBean shiroFilterRegistration() {

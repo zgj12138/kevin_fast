@@ -3,6 +3,7 @@ package io.kevin.config;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 
 import java.util.Properties;
@@ -12,6 +13,7 @@ import java.util.Properties;
  * @author ZGJ
  * @date 2017/7/1 13:38
  **/
+@Configuration
 public class KaptchaConfig {
     @Bean
     public DefaultKaptcha producer() {

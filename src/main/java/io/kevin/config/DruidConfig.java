@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author ZGJ
  * @date 2017/7/1 11:11
  **/
+@Configuration
 public class DruidConfig {
     private Logger logger = LoggerFactory.getLogger(DruidConfig.class);
 
