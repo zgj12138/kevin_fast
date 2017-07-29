@@ -1,6 +1,5 @@
 package io.kevin.modules.sys.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import io.kevin.common.annotation.SysLog;
 import io.kevin.common.utils.Constant;
 import io.kevin.common.utils.PageUtils;
@@ -97,7 +96,7 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @SysLog("保存角色")
-    @RequestMapping("/save")
+    @PostMapping("/save")
     @RequiresPermissions("sys:role:save")
     public Result save(@RequestBody SysRoleEntity role){
         ValidatorUtils.validateEntity(role);
@@ -113,7 +112,7 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @SysLog("修改角色")
-    @GetMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("sys:role:update")
     public Result update(@RequestBody SysRoleEntity role){
         ValidatorUtils.validateEntity(role);
@@ -130,7 +129,7 @@ public class SysRoleController extends BaseController {
      * @return
      */
     @SysLog("删除角色")
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @RequiresPermissions("sys:role:delete")
     public Result delete(@RequestBody Long[] roleIds) {
         sysRoleService.deleteBatch(roleIds);

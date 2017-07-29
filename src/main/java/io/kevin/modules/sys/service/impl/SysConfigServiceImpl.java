@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.kevin.common.exception.GJException;
 import io.kevin.modules.sys.dao.SysConfigDao;
 import io.kevin.modules.sys.entity.SysConfigEntity;
+import io.kevin.modules.sys.redis.SysConfigRedis;
 import io.kevin.modules.sys.service.SysConfigService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,26 +23,39 @@ public class SysConfigServiceImpl implements SysConfigService{
 
     @Autowired
     private SysConfigDao sysConfigDao;
+    @Autowired
+    private SysConfigRedis sysConfigRedis;
 
     @Override
     @Transactional
     public void save(SysConfigEntity configEntity) {
         sysConfigDao.save(configEntity);
+        sysConfigRedis.saveOrUpdate(configEntity);
     }
 
     @Override
+    @Transactional
     public void update(SysConfigEntity configEntity) {
         sysConfigDao.update(configEntity);
+        sysConfigRedis.saveOrUpdate(configEntity);
     }
 
     @Override
+    @Transactional
     public void updateValueByKey(String key, String value) {
         sysConfigDao.updateValueByKey(key, value);
+        sysConfigRedis.delete(key);
     }
 
     @Override
+    @Transactional
     public void deleteBatch(Long[] ids) {
         sysConfigDao.deleteBatch(ids);
+
+        for(Long id : ids) {
+            SysConfigEntity configEntity =queryObject(id);
+            sysConfigRedis.delete(configEntity.getKey());
+        }
     }
 
     @Override
@@ -61,11 +75,13 @@ public class SysConfigServiceImpl implements SysConfigService{
 
     @Override
     public String getValue(String key, String defaultValue) {
-        String value = sysConfigDao.queryByKey(key);
-        if(StringUtils.isBlank(value)) {
-            return defaultValue;
+        SysConfigEntity configEntity = sysConfigRedis.get(key);
+        if(configEntity == null) {
+            configEntity = sysConfigDao.queryByKey(key);
+            sysConfigRedis.saveOrUpdate(configEntity);
         }
-        return value;
+
+        return configEntity == null ? null : configEntity.getValue();
     }
 
     @Override

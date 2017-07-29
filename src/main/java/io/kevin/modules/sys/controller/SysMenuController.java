@@ -98,7 +98,7 @@ public class SysMenuController extends BaseController{
      * @param menu
      * @return
      */
-    @GetMapping("/save")
+    @PostMapping("/save")
     @RequiresPermissions("sys:menu:save")
     public Result save(@RequestParam SysMenuEntity menu) {
         //数据校验
@@ -114,7 +114,7 @@ public class SysMenuController extends BaseController{
      * @return
      */
     @SysLog("保存菜单")
-    @GetMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("sys:menu:update")
     public Result update(@RequestBody SysMenuEntity menu) {
         //数据校验
@@ -124,7 +124,7 @@ public class SysMenuController extends BaseController{
     }
 
     @SysLog("删除菜单")
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @RequiresPermissions("sys:menu:delete")
     public Result delete(Long menuId) {
         if(menuId <= 30) {

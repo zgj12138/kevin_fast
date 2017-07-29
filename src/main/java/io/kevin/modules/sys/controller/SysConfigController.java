@@ -59,7 +59,7 @@ public class SysConfigController extends BaseController {
      * 保存配置
      */
     @SysLog("保存配置")
-    @GetMapping("/save")
+    @PostMapping("/save")
     @RequiresPermissions("sys:config:save")
     public Result save(@RequestBody SysConfigEntity sysConfigEntity) {
         ValidatorUtils.validateEntity(sysConfigEntity);
@@ -72,7 +72,7 @@ public class SysConfigController extends BaseController {
      * 修改配置
      */
     @SysLog("修改配置")
-    @GetMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("sys:config:update")
     public Result update(@RequestBody SysConfigEntity config){
         ValidatorUtils.validateEntity(config);
@@ -86,7 +86,7 @@ public class SysConfigController extends BaseController {
      * 删除配置
      */
     @SysLog("删除配置")
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     @RequiresPermissions("sys:config:delete")
     public Result delete(@RequestBody Long[] ids){
         sysConfigService.deleteBatch(ids);
