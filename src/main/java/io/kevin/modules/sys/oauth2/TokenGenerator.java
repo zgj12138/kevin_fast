@@ -12,9 +12,6 @@ import java.util.UUID;
  * @date 2017/7/14 0:04
  **/
 public class TokenGenerator {
-    public static String generateValue() {
-        return generateValue(UUID.randomUUID().toString());
-    }
     private static final char[] hexCode = "0123456789abcdef".toCharArray();
 
     public static String toHexString(byte[] data) {
@@ -39,5 +36,8 @@ public class TokenGenerator {
         } catch (NoSuchAlgorithmException e) {
             throw new GJException("生成Token失败");
         }
+    }
+    public static String generateValue() {
+        return generateValue(UUID.randomUUID().toString());
     }
 }

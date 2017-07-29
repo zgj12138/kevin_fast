@@ -55,12 +55,12 @@ public class SysMenuServiceImpl implements SysMenuService{
     public List<SysMenuEntity> getUserMenuList(Long userId) {
         //系统管理员，拥有最高权限
         if(userId == Constant.SUPER_ADMIN) {
-            return getUserMenuList(null);
+            return getAllMenuList(null);
         }
 
         //用户菜单列表
-        List<Long> meuIdList = sysUserService.queryAllMenuId(userId);
-        return  getAllMenuList(null);
+        List<Long> menuIdList = sysUserService.queryAllMenuId(userId);
+        return  getAllMenuList(menuIdList);
 
     }
 

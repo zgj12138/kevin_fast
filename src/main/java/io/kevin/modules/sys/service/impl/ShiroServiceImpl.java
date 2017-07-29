@@ -29,7 +29,7 @@ public class ShiroServiceImpl implements ShiroService {
     private SysUserTokenDao sysUserTokenDao;
 
     @Override
-    public Set<String> getUserPermission(Long userId) {
+    public Set<String> getUserPermissions(Long userId) {
         List<String> permsList;
         //系统管理员，拥有最高权限
         if(userId == Constant.SUPER_ADMIN) {

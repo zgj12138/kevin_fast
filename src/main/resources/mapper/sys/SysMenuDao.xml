@@ -40,7 +40,7 @@
 
     <select id="queryList" resultType="io.kevin.modules.sys.entity.SysMenuEntity">
         select m.*,(select p.name from sys_menu p where p.menu_id = m.parent_id) as parentName
-          from sys_menu
+          from sys_menu m
         <choose>
             <when test="sidx != null and sidx.trim() !=''">
                 order by m.${sidx} ${order}

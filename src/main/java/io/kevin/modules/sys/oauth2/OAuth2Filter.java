@@ -39,7 +39,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         //获取请求token,如果token不存在，直接返回401
         String token = getRequestToken((HttpServletRequest) servletRequest);
         if(StringUtils.isBlank(token)) {
-            HttpServletResponse httpServletResponse = (HttpServletResponse) servletRequest;
+            HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             String json = new Gson().toJson(Result.error(HttpStatus.SC_UNAUTHORIZED, "invalid token"));
             httpServletResponse.getWriter().print(json);
 

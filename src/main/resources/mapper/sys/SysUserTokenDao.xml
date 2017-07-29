@@ -35,7 +35,7 @@
                 `token` = #{token},
             </if>
             <if test="expireTime != null">
-                `expire_time` = #{expireTime}
+                `expire_time` = #{expireTime},
             </if>
             <if test="updateTime != null">
                 `update_time` = #{updateTime}

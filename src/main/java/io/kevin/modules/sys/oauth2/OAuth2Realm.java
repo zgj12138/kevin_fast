@@ -67,7 +67,7 @@ public class OAuth2Realm extends AuthorizingRealm{
         Long userId = user.getUserId();
 
         //用户权限列表
-        Set<String> permSet = shiroService.getUserPermission(userId);
+        Set<String> permSet = shiroService.getUserPermissions(userId);
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.setStringPermissions(permSet);

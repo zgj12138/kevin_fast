@@ -16,7 +16,7 @@ public interface ShiroService {
      * @param userId
      * @return
      */
-    Set<String> getUserPermission(Long userId);
+    Set<String> getUserPermissions(Long userId);
 
     /**
      * 根据token字符串查询Token
