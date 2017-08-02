@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- *
  * mvc配置
  * @author ZGJ
  * @date 2017/7/30 10:56

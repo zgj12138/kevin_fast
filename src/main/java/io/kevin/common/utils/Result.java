@@ -3,6 +3,7 @@ package io.kevin.common.utils;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 封装结果集
@@ -35,8 +36,15 @@ public class Result extends HashMap<String, Object>{
         result.put("msg", msg);
         return result;
     }
+
     public static Result ok() {
         return new Result();
+    }
+
+    public static Result ok(Map<String, Object> map) {
+        Result result = new Result();
+        result.putAll(map);
+        return result;
     }
 
     public Result put(String key, Object value) {

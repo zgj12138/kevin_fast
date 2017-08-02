@@ -17,13 +17,13 @@ public interface UserService {
 
     int queryTotal (Map<String, Object> map);
 
-    void save(String mobile, String passowrd);
+    void save(String mobile, String password);
 
     void update(UserEntity user);
 
     void delete(Long userId);
 
-    void deleteBatch(long[] userIds);
+    void deleteBatch(Long[] userIds);
 
     UserEntity queryByMobile(String mobile);
 
