@@ -21,7 +21,7 @@ public class TokenEntity implements Serializable {
     /**
      * 过期时间
      */
-    private Date expireTIme;
+    private Date expireTime;
     /**
      * 更新时间
      */
@@ -43,12 +43,12 @@ public class TokenEntity implements Serializable {
         this.token = token;
     }
 
-    public Date getExpireTIme() {
-        return expireTIme;
+    public Date getExpireTime() {
+        return expireTime;
     }
 
-    public void setExpireTIme(Date expireTIme) {
-        this.expireTIme = expireTIme;
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 
     public Date getUpdateTime() {

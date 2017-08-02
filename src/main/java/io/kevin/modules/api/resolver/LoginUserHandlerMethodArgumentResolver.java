@@ -18,27 +18,27 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * @date 2017/7/31 23:40
  **/
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+    
     @Autowired
     private UserService userService;
 
-
     @Override
-    public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameterType().isAssignableFrom(UserEntity.class)
-                && methodParameter.hasParameterAnnotation(LoginUser.class);
+    public boolean supportsParameter(MethodParameter parameter) {
+        return parameter.getParameterType().isAssignableFrom(UserEntity.class) && parameter.hasParameterAnnotation(LoginUser.class);
     }
 
     @Override
-    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
-
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
+                                  NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
         //获取用户ID
-        Object object = nativeWebRequest.getAttribute(AuthorizationInterceptor.LOGIN_USER_KEY, RequestAttributes.SCOPE_REQUEST);
-        if(object == null) {
+        Object object = request.getAttribute(AuthorizationInterceptor.LOGIN_USER_KEY, RequestAttributes.SCOPE_REQUEST);
+        if(object == null){
             return null;
         }
 
         //获取用户信息
-        UserEntity user = userService.queryObject((Long) object);
+        UserEntity user = userService.queryObject((Long)object);
+
         return user;
     }
 }

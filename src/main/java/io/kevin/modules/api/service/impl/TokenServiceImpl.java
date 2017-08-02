@@ -59,14 +59,14 @@ public class TokenServiceImpl implements TokenService {
             tokenEntity.setUserId(userId);
             tokenEntity.setToken(token);
             tokenEntity.setUpdateTime(now);
-            tokenEntity.setExpireTIme(expireTime);
+            tokenEntity.setExpireTime(expireTime);
 
             //保存token
             save(tokenEntity);
         } else {
             tokenEntity.setToken(token);
             tokenEntity.setUpdateTime(now);
-            tokenEntity.setExpireTIme(expireTime);
+            tokenEntity.setExpireTime(expireTime);
 
             //更新token
             update(tokenEntity);

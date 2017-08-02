@@ -52,7 +52,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //查询token信息
         TokenEntity tokenEntity = tokenService.queryByToken(token);
-        if(tokenEntity == null || tokenEntity.getExpireTIme().getTime() < System.currentTimeMillis()) {
+        if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()) {
             throw new GJException("token失败，请重新登录");
         }
 
