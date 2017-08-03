@@ -18,7 +18,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * @date 2017/7/31 23:40
  **/
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
-    
+
     @Autowired
     private UserService userService;
 
