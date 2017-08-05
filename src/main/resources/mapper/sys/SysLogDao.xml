@@ -37,10 +37,9 @@
             #{username},
             #{operation},
             #{method},
-            #{method},
             #{params},
             #{ip},
-            #{create_date}
+            #{createDate}
         )
     </insert>
 

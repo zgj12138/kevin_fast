@@ -2,6 +2,8 @@ package io.kevin.modules.sys.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.sun.org.apache.regexp.internal.RE;
+import io.kevin.common.annotation.SysLog;
 import io.kevin.common.utils.Result;
 import io.kevin.common.utils.ShiroUtils;
 import io.kevin.modules.sys.entity.SysUserEntity;
@@ -54,29 +56,28 @@ public class SysLoginController {
         ImageIO.write(image, "jpg", outputStream);
         IOUtils.closeQuietly(outputStream);
     }
-
+    @SysLog("用户登录")
     @PostMapping("/sys/login")
     public Map<String, Object> login(String username, String password, String captcha) throws IOException {
         String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
-        if(!captcha.equalsIgnoreCase(kaptcha)) {
+        if(!captcha.equalsIgnoreCase(kaptcha)){
             return Result.error("验证码不正确");
         }
 
         //用户信息
         SysUserEntity user = sysUserService.queryByUserName(username);
 
-        //账号不存在
+        //账号不存在、密码错误
         if(user == null || !user.getPassword().equals(new Sha256Hash(password, user.getSalt()).toHex())) {
             return Result.error("账号或密码不正确");
         }
 
         //账号锁定
-        if(user.getStatus() == 0) {
-            return Result.error("账号已被锁定，请联系管理员");
+        if(user.getStatus() == 0){
+            return Result.error("账号已被锁定,请联系管理员");
         }
 
         //生成token，并保存到数据库
-        Result result = sysUserTokenService.createToken(user.getUserId());
-        return result;
+        return sysUserTokenService.createToken(user.getUserId());
     }
 }
