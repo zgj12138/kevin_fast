@@ -1,6 +1,5 @@
 package io.kevin.modules.sys.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import io.kevin.common.annotation.SysLog;
 import io.kevin.common.utils.PageUtils;
 import io.kevin.common.utils.Query;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 系统配置信息控制器层
+ * 系统参数信息控制器层
  * @author ZGJ
  * @date 2017/7/18 0:11
  **/

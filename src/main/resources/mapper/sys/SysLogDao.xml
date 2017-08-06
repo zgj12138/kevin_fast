@@ -30,7 +30,8 @@
             `method`,
             `params`,
             `ip`,
-            `create_date`
+            `create_date`,
+            `time`
         )
         values
         (
@@ -39,7 +40,8 @@
             #{method},
             #{params},
             #{ip},
-            #{createDate}
+            #{createDate},
+            #{time}
         )
     </insert>
 

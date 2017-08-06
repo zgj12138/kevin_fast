@@ -30,6 +30,13 @@ public class SysMenuController extends BaseController{
     @Autowired
     private ShiroService shiroService;
 
+    @GetMapping("/nav")
+    public Result nav() {
+        List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId());
+        Set<String> permissions = shiroService.getUserPermissions(getUserId());
+        return Result.ok().put("menuList", menuList)
+                .put("permissions", permissions);
+    }
     /**
      * 所有菜单列表
      * @return
@@ -43,7 +50,7 @@ public class SysMenuController extends BaseController{
     }
 
     /**
-     * 选择菜单（添加，修改菜单
+     * 选择菜单（添加，修改菜单)
      * @return
      */
     @GetMapping("/select")

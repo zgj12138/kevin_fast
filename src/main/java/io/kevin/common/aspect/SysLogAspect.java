@@ -71,7 +71,7 @@ public class SysLogAspect {
         //请求的参数
         Object[] args = joinPoint.getArgs();
         try {
-            String params = new Gson().toJson(args);
+            String params = new Gson().toJson(args[0]);
             sysLogEntity.setParams(params);
         } catch (Exception e) {
             logger.error("请求参数解析错误", e);
@@ -93,6 +93,7 @@ public class SysLogAspect {
         sysLogEntity.setUsername(username);
 
         sysLogEntity.setCreateDate(new Date());
+        sysLogEntity.setTime(time);
         sysLogService.save(sysLogEntity);
     }
 }
