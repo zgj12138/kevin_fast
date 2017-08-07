@@ -31,7 +31,7 @@ public class SysConfigServiceTest extends KevinApplicationTests{
     }
     @Test
     public void testGet() {
-        String s = sysConfigService.getValue("test", "a");
+        String s = sysConfigService.getValue("test");
         System.out.println(s);
     }
 }

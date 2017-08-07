@@ -2,6 +2,7 @@ package io.kevin.modules.sys.service.impl;
 
 import io.kevin.common.utils.Result;
 import io.kevin.modules.sys.dao.SysUserTokenDao;
+import io.kevin.modules.sys.entity.SysUserEntity;
 import io.kevin.modules.sys.entity.SysUserTokenEntity;
 import io.kevin.modules.sys.service.SysUserTokenService;
 import io.kevin.modules.sys.oauth2.TokenGenerator;
@@ -14,7 +15,7 @@ import java.util.Date;
  * @author ZGJ
  * @date 2017/7/13 23:15
  **/
-@Service("sysUserTokenServiceImpl")
+@Service("sysUserTokenService")
 public class SysUserTokenServiceImpl implements SysUserTokenService{
     @Autowired
     private SysUserTokenDao sysUserTokenDao;
@@ -56,6 +57,7 @@ public class SysUserTokenServiceImpl implements SysUserTokenService{
         if(tokenEntity == null) {
             tokenEntity = new SysUserTokenEntity();
             tokenEntity.setUserId(userId);
+            tokenEntity.setToken(token);
             tokenEntity.setUpdateTime(now);
             tokenEntity.setExpireTime(expireTime);
 
@@ -72,5 +74,17 @@ public class SysUserTokenServiceImpl implements SysUserTokenService{
         Result result = Result.ok().put("token", token)
                 .put("expire", EXPIRE);
         return  result;
+    }
+
+    @Override
+    public void logout(Long userId) {
+        //生成一个token
+        String token = TokenGenerator.generateValue();
+
+        //修改token
+        SysUserTokenEntity tokenEntity = new SysUserTokenEntity();
+        tokenEntity.setUserId(userId);
+        tokenEntity.setToken(token);
+        update(tokenEntity);
     }
 }

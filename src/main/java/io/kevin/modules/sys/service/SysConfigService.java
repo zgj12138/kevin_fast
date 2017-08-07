@@ -33,10 +33,9 @@ public interface SysConfigService {
     /**
      * 根据key，获取配置的value值
      * @param key
-     * @param defaultValue 缺省值
      * @return
      */
-    String getValue(String key, String defaultValue);
+    String getValue(String key);
 
     /**
      * 根据key,获取value的object值

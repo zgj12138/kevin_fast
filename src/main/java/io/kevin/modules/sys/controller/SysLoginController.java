@@ -32,7 +32,7 @@ import java.util.Map;
  * @date 2017/7/16 14:35
  **/
 @RestController
-public class SysLoginController {
+public class SysLoginController extends BaseController {
     @Autowired
     private Producer producer;
     @Autowired
@@ -79,5 +79,11 @@ public class SysLoginController {
 
         //生成token，并保存到数据库
         return sysUserTokenService.createToken(user.getUserId());
+    }
+    @SysLog("退出登录")
+    @PostMapping("/sys/logout")
+    public Result logout() {
+        sysUserTokenService.logout(getUserId());
+        return Result.ok();
     }
 }

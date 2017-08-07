@@ -33,4 +33,10 @@ public interface SysUserTokenService {
      * @return
      */
     Result createToken(Long userId);
+
+    /**
+     * 退出，修改token的值
+     * @param userId
+     */
+    void logout(Long userId);
 }

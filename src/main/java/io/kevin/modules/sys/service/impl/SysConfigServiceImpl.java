@@ -74,7 +74,7 @@ public class SysConfigServiceImpl implements SysConfigService{
     }
 
     @Override
-    public String getValue(String key, String defaultValue) {
+    public String getValue(String key) {
         SysConfigEntity configEntity = sysConfigRedis.get(key);
         if(configEntity == null) {
             configEntity = sysConfigDao.queryByKey(key);
@@ -86,7 +86,7 @@ public class SysConfigServiceImpl implements SysConfigService{
 
     @Override
     public <T> T getConfigObject(String key, Class<T> clazz) {
-        String value = getValue(key, null);
+        String value = getValue(key );
         if(StringUtils.isNotBlank(value)) {
             return new Gson().fromJson(value, clazz);
         }

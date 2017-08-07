@@ -19,8 +19,6 @@ public interface SysLogService {
 
     void save(SysLogEntity sysLog);
 
-    void update(SysLogEntity sysLog);
-
     void delete(Long id);
 
     void deleteBatch(Long[] ids);

@@ -5,7 +5,7 @@ server:
         max-threads: 1000
         min-spare-threads: 30
     port: 80
-    #context-path: /renren-fast
+    #context-path: /kevin-fast
 
 # mysql
 spring:
@@ -18,9 +18,9 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
     http:
         multipart:
-        max-file-size: 100MB
-        max-request-size: 100MB
-        enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB
+            enabled: true
     # 指定静态资源的路径
     resources:
         static-locations: classpath:/static/,classpath:/views/
