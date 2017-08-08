@@ -26,6 +26,11 @@ public class ScheduleJobEntity implements Serializable {
     @NotBlank(message = "bean名称不能为空")
     private String beanName;
     /**
+     * 方法名
+     */
+    @NotBlank(message = "方法名不能为空")
+    private String methodName;
+    /**
      * 参数
      */
     private String params;
@@ -45,8 +50,6 @@ public class ScheduleJobEntity implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
-
     public Long getJobId() {
         return JobId;
     }
@@ -61,6 +64,14 @@ public class ScheduleJobEntity implements Serializable {
 
     public void setBeanName(String beanName) {
         this.beanName = beanName;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 
     public String getParams() {
@@ -93,13 +104,5 @@ public class ScheduleJobEntity implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 }
