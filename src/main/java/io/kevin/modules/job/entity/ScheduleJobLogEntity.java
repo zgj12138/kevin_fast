@@ -37,7 +37,7 @@ public class ScheduleJobLogEntity implements Serializable {
     /**
      * 失败信息
      */
-    private Integer error;
+    private String error;
     /**
      * 耗时(单位；毫秒)
      */
@@ -95,11 +95,11 @@ public class ScheduleJobLogEntity implements Serializable {
         this.status = status;
     }
 
-    public Integer getError() {
+    public String getError() {
         return error;
     }
 
-    public void setError(Integer error) {
+    public void setError(String error) {
         this.error = error;
     }
 
