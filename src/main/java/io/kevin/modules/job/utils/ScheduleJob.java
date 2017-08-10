@@ -25,7 +25,7 @@ import java.util.concurrent.Future;
 public class ScheduleJob extends QuartzJobBean {
     private static Logger logger = LoggerFactory.getLogger(ScheduleJob.class);
     private ExecutorService service = Executors.newSingleThreadExecutor();
-    
+
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         String jsonJob = jobExecutionContext.getMergedJobDataMap().getString(ScheduleJobEntity.JOB_PARAM_KEY);
