@@ -50,6 +50,8 @@ public class ScheduleJobEntity implements Serializable {
     /**
      * 创建时间
      */
+    private Date createTime;
+
     public Long getJobId() {
         return JobId;
     }
@@ -104,5 +106,13 @@ public class ScheduleJobEntity implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
