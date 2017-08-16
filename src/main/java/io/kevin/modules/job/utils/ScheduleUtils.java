@@ -133,7 +133,7 @@ public class ScheduleUtils {
      * @param scheduler
      * @param jobId
      */
-    private static void pauseJob(Scheduler scheduler, Long jobId) {
+    public static void pauseJob(Scheduler scheduler, Long jobId) {
         try {
             scheduler.pauseJob(getJobKey(jobId));
         } catch (SchedulerException e) {

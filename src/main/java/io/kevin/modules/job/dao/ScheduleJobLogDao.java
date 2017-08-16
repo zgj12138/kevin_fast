@@ -1,5 +1,6 @@
 package io.kevin.modules.job.dao;
 
+import io.kevin.modules.job.entity.ScheduleJobLogEntity;
 import io.kevin.modules.sys.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,6 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2017/8/8 0:15
  **/
 @Mapper
-public interface ScheduleJobLogDao extends BaseDao<ScheduleJobLogDao> {
+public interface ScheduleJobLogDao extends BaseDao<ScheduleJobLogEntity> {
 
 }

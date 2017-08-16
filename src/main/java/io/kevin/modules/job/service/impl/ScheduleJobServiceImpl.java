@@ -1,10 +1,11 @@
 package io.kevin.modules.job.service.impl;
 
+import io.kevin.common.utils.Constant;
 import io.kevin.modules.job.dao.ScheduleJobDao;
 import io.kevin.modules.job.entity.ScheduleJobEntity;
 import io.kevin.modules.job.service.ScheduleJobService;
-import io.kevin.modules.job.utils.ScheduleJob;
 import io.kevin.modules.job.utils.ScheduleUtils;
+import io.kevin.common.utils.Constant.ScheduleStatus;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,17 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     @PostConstruct
     public void init() {
         List<ScheduleJobEntity> scheduleJobEntityList = scheduleJobDao.queryList(new HashMap<>());
-        for(ScheduleJobEntity scheduleJob : scheduleJobEntityList) {
+        for (ScheduleJobEntity scheduleJob : scheduleJobEntityList) {
             CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(scheduler, scheduleJob.getJobId());
             //如果不存在，则创建
-            if(cronTrigger == null) {
+            if (cronTrigger == null) {
                 ScheduleUtils.createScheduleJob(scheduler, scheduleJob);
             } else {
                 ScheduleUtils.updateScheduleJob(scheduler, scheduleJob);
             }
         }
     }
+
     @Override
     public ScheduleJobEntity queryObject(Long jobId) {
         return scheduleJobDao.queryObject(jobId);
@@ -75,7 +77,7 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     @Override
     @Transactional
     public void deleteBatch(Long[] jobIds) {
-        for(Long jobId : jobIds) {
+        for (Long jobId : jobIds) {
             ScheduleUtils.deleteScheduleJob(scheduler, jobId);
         }
     }
@@ -92,18 +94,26 @@ public class ScheduleJobServiceImpl implements ScheduleJobService {
     @Override
     @Transactional
     public void run(Long[] jobIds) {
-        for(Long jobId : jobIds) {
+        for (Long jobId : jobIds) {
             ScheduleUtils.run(scheduler, queryObject(jobId));
         }
     }
 
     @Override
+    @Transactional
     public void pause(Long[] jobIds) {
-
+        for (Long jobId : jobIds) {
+            ScheduleUtils.pauseJob(scheduler, jobId);
+        }
+        updateBatch(jobIds, ScheduleStatus.PAUSE.getValue());
     }
 
     @Override
+    @Transactional
     public void resume(Long[] jobIds) {
-
+        for (Long jobId : jobIds) {
+            ScheduleUtils.resumeJob(scheduler, jobId);
+        }
+        updateBatch(jobIds, ScheduleStatus.NORMAL.getValue());
     }
 }
