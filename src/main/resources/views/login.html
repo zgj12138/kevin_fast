@@ -87,6 +87,7 @@
                 src: 'captcha.jpg'
             },
             beforeCreate: function() {
+                //如果当前窗体和父窗体不同
                 if (self != top) {
                     top.location.href = self.location.href;
                 }
