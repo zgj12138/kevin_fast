@@ -33,8 +33,7 @@ public class ShiroConfig {
     public SessionManager sessionManager(){
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationSchedulerEnabled(true);
-        //sessionManager.setSessionIdUrlRewritingEnabled(false);
-        //sessionManager.setSessionIdCookieEnabled(false);
+        sessionManager.setSessionIdCookieEnabled(false);
         return sessionManager;
     }
 

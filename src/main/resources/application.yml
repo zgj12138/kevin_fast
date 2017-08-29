@@ -5,6 +5,7 @@ server:
         max-threads: 1000
         min-spare-threads: 30
     port: 80
+    #打开注释，则通过【http://localhost/kevin-fast】访问
     #context-path: /kevin-fast
 
 # mysql
