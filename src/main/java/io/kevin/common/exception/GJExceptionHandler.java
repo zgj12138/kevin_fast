@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @author ZGJ
  * @date 2017/7/1 15:43
 */
-//@RestControllerAdvice
+@RestControllerAdvice
 public class GJExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * 自定义异常处理
+     * 处理定义异常处理
      * @param e
      * @return
      */

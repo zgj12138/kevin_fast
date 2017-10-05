@@ -35,9 +35,9 @@ public class ScheduleConfig {
         properties.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
 
         //集群配置
-//      properties.put("org.quartz.jobStore.isClustered", "true");
-//      properties.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
-//      properties.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
+      properties.put("org.quartz.jobStore.isClustered", "true");
+      properties.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
+      properties.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
 
         properties.put("org.quartz.jobStore.misfireThreshold", "12000");
         properties.put("org.quartz.jobStore.tablePrefix", "QRTZ_");

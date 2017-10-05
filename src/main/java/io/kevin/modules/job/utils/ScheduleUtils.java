@@ -19,7 +19,7 @@ public class ScheduleUtils {
      * @param jobId
      * @return
      */
-    public static TriggerKey getTriggerKey(Long jobId) {
+    private static TriggerKey getTriggerKey(Long jobId) {
         return TriggerKey.triggerKey(JOB_NAME + jobId);
     }
 
@@ -28,7 +28,7 @@ public class ScheduleUtils {
      * @param jobId
      * @return
      */
-    public static JobKey getJobKey(Long jobId) {
+    private static JobKey getJobKey(Long jobId) {
         return JobKey.jobKey(JOB_NAME + jobId);
     }
 
@@ -42,7 +42,7 @@ public class ScheduleUtils {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(jobId));
         } catch (SchedulerException e) {
-            throw new GJException("获取定时任务CronTrigger出现异常", e);
+            throw new GJException("getCronTrigger异常，请检查qrtz开头的表，是否有脏数据", e);
         }
     }
 
